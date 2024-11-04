@@ -18,13 +18,20 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
     @GetMapping
-    public ResponseEntity<List<Client>> getAllClients(){
-       return new ResponseEntity<List<Client>>(clientService.allClients(), HttpStatus.OK) ;
+    public ResponseEntity<List<Client>> getAllClients() {
+        List<Client> clients = clientService.allClients();
+        System.out.println(clients);
+        return ResponseEntity.ok(clients); // Simplified response
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Client>> getSingleClient(@PathVariable ObjectId id){
         return new ResponseEntity<Optional<Client>>(clientService.singleClint(id), HttpStatus.OK);
     }
 
+    @GetMapping("/msg")
+    public ResponseEntity<String> getMsg(){
+        return new ResponseEntity<String>("hello <h2>Yurii</h2>", HttpStatus.OK);
+    }
 }

@@ -10,12 +10,10 @@ import java.util.Optional;
 @Service
 public class ClientService {
     @Autowired
-
     private ClientRepository clientRepository;
 
     public List<Client> allClients(){
         return clientRepository.findAll();
-
     }
 
     public Optional<Client> singleClint(ObjectId id){
