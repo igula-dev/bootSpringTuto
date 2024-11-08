@@ -1,9 +1,10 @@
 # Use the official OpenJDK 17 image as the base image
 FROM openjdk:17-alpine
 
-# Install Maven
-RUN apk add --no-cache maven
+# Install Maven and dependencies for DNS resolution (for MongoDB SRV record)
+RUN apk add --no-cache maven bash curl
 
+# Set the working directory
 WORKDIR /app
 
 # Copy Maven project files
@@ -13,7 +14,8 @@ COPY src ./src
 # Build the application and create the JAR file
 RUN mvn -B clean package
 
-ARG JAR_FILE=target/*.jar
+# Expose port for the application
+EXPOSE 8080
 
-# Run the application directly from the target directory
-CMD sh -c 'java -jar target/*.jar'
+# Use a dynamic JAR file name
+CMD ["sh", "-c", "java -jar target/*.jar"]
