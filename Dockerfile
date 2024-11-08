@@ -4,7 +4,6 @@ FROM openjdk:17-alpine
 # Install Maven
 RUN apk add --no-cache maven
 
-# Set the working directory
 WORKDIR /app
 
 # Copy Maven project files
@@ -14,5 +13,7 @@ COPY src ./src
 # Build the application and create the JAR file
 RUN mvn -B clean package
 
+ARG JAR_FILE=target/*.jar
+
 # Run the application directly from the target directory
-CMD ["java", "-jar", "target/your-app.jar"]
+CMD ["java", "-jar", "target/${JAR_FILE}"]
