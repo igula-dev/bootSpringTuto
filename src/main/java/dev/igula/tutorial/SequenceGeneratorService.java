@@ -23,6 +23,6 @@ public class SequenceGeneratorService {
                 DatabaseSequence.class
         );
         System.out.print("seqName:"+seqName);
-        return !Objects.isNull(counter) ? counter.getSeq() : 1;
+        return counter != null ? Long.valueOf(counter.getSeq()) : 1L;
     }
 }

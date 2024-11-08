@@ -19,7 +19,7 @@ public class ClientService {
         return clientRepository.findAll();
     }
     public Client saveClient(@NotNull Client client) {
-        client.setClientId(sequenceGeneratorService.generateSequence("clients_sequence"));
+        client.setClientId(Long.valueOf(sequenceGeneratorService.generateSequence("clients_sequence")));
         return clientRepository.save(client);
     }
 

@@ -23,7 +23,6 @@ public class Client {
     @JsonProperty("id")
     private String id;
 
-    @Setter
     @Field
     @JsonProperty("clientId")
     private Long clientId;
@@ -64,4 +63,9 @@ public class Client {
     @JsonProperty("date")
     private String date;
 
+    public void setClientId(Long clientId) {
+        this.clientId = clientId;
+    }
 }
+
+
