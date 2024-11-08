@@ -16,4 +16,4 @@ RUN mvn -B clean package
 ARG JAR_FILE=target/*.jar
 
 # Run the application directly from the target directory
-CMD ["java", "-jar", "target/${JAR_FILE}"]
+CMD sh -c 'java -jar target/*.jar'
